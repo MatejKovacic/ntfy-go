@@ -36,9 +36,7 @@ If you are using authentication, use `-u` (username) and `-p` (password) paramet
 
 Now you can cross compile Go app for Arm64 architecture:
 ```
-set GOOS=linux
-set GOARCH=arm64
-go build -o send_ntfy_arm64 send_ntfy.go
+env GOOS=linux GOARCH=arm64 go build -o send_ntfy_arm64 send_ntfy.go
 ```
 
 Copy the file `send_ntfy_arm64` to your ARM device, make it executable (`chmod +x send_ntfy_arm64`) and run it:
