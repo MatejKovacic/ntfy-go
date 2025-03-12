@@ -26,7 +26,7 @@ wget --post-data="TEST message!" https://ntfy.envs.net/MyUniqueTopic -O - &> /de
 ```
 
 ### Test Go app on your computer
-If everything works, run the Go app. Please note that server should be without trailing slash:
+If everything works, run the Go app:
 ```
 go run send_ntfy.go -m "My first test message from Go" -t MyUniqueTopic -s https://ntfy.envs.net
 ```
