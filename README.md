@@ -37,19 +37,23 @@ go run send_ntfy.go -m "My first test message from Go" -t MyUniqueTopic -s https
 ```
 If you are using authentication, use `-u` (username) and `-p` (password) parameters.
 
-## Compile ARM64 version
+## Compile ARM versions
 
 Now you can cross compile Go app for **ARM64** architecture:
 ```
 GOOS=linux GOARCH=arm64 go build -o send_ntfy_arm64 send_ntfy.go
 ```
 
-If your device is 32-bit ARM (for instance `armv7l` - please use `uname -a` command to identify architecture of your device), you should cross compile Go app for **ARM32** architecture:
+If your device is **32-bit ARM** (for instance `armv7l` - please use `uname -a` command to identify architecture of your device), you should cross compile Go app for **ARM32** architecture (this is the case for *TP-Link M7350* device):
 ```
 GOOS=linux GOARCH=arm GOARM=7 go build -o send_ntfy_arm send_ntfy.go
 ```
 
-Now copy the file `send_ntfy_arm64` to your ARM device, make it executable (`chmod +x send_ntfy_arm64`) and run it:
+Now copy the file `send_ntfy_arm64` (or `send_ntfy_arm`) to your ARM device, make it executable (`chmod +x send_ntfy_arm64` or `chmod +x send_ntfy_arm`) and run it:
 ```
 ./send_ntfy_arm64 -m "Test message from ARM device" -t MyUniqueTopic -s https://ntfy.envs.net
+```
+or (for 32-bit version):
+```
+./send_ntfy_arm -m "Test message from ARM device" -t MyUniqueTopic -s https://ntfy.envs.net
 ```
