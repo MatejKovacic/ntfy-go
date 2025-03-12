@@ -4,6 +4,11 @@ This is a simple Go app for sending Ntfy messages from ARM devices that **do not
 
 **Usage**: `send_ntfy -s <server> -t <topic> -m <message> [-u <username> -p <password>]`
 
+**Precompiled binaries**:
+- x86 architecture: [send_ntfy_amd64](send_ntfy_amd64)
+- ARM64 architecture: [send_ntfy_arm64](send_ntfy_arm64)
+- ARM32 architecture: [send_ntfy_arm](send_ntfy_arm)
+
 ## How to test
 
 ### Setup app on your phone
@@ -34,12 +39,17 @@ If you are using authentication, use `-u` (username) and `-p` (password) paramet
 
 ## Compile ARM64 version
 
-Now you can cross compile Go app for Arm64 architecture:
+Now you can cross compile Go app for **ARM64** architecture:
 ```
-env GOOS=linux GOARCH=arm64 go build -o send_ntfy_arm64 send_ntfy.go
+GOOS=linux GOARCH=arm64 go build -o send_ntfy_arm64 send_ntfy.go
 ```
 
-Copy the file `send_ntfy_arm64` to your ARM device, make it executable (`chmod +x send_ntfy_arm64`) and run it:
+If your device is 32-bit ARM (for instance `armv7l` - please use `uname -a` command to identify architecture of your device), you should cross compile Go app for **ARM32** architecture:
+```
+GOOS=linux GOARCH=arm GOARM=7 go build -o send_ntfy_arm send_ntfy.go
+```
+
+Now copy the file `send_ntfy_arm64` to your ARM device, make it executable (`chmod +x send_ntfy_arm64`) and run it:
 ```
 ./send_ntfy_arm64 -m "Test message from ARM device" -t MyUniqueTopic -s https://ntfy.envs.net
 ```
