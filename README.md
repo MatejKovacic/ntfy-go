@@ -72,4 +72,5 @@ Message sent successfully!
 
 Received message (on a phone):
 
-![alt text](ntfy_phone.png)
+<img src="ntfy_phone.png" alt="Ntfy message on a phone" width="250">
+
