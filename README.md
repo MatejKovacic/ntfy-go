@@ -57,3 +57,19 @@ or (for 32-bit version):
 ```
 ./send_ntfy_arm -m "Test message from ARM device" -t MyUniqueTopic -s https://ntfy.envs.net
 ```
+
+## Problems because of device is unable to verify TLS certificate
+
+Some small ARM devices (such as TP-Link) usually do not have up to date certificate database. In that case app will return you an error: `Error: failed to send request: Post "https://ntfy.envs.net/MyUniqueTopic": tls: failed to verify certificate: x509: certificate signed by unknown authority`.
+
+Quick and dirty solution is to disable certificate verification (however that means you are not resistant to MITM attacks anymore!). This is done by [ntfy.go](ntfy.go) app ([binary version](ntfy_arm)).
+
+Example:
+```
+./ntfy_arm -s https://ntfy.envs.net/ -t MyUniqueTopic -m "First test from TP-Link M7350 v4."
+Message sent successfully!
+```
+
+Received message (on a phone):
+
+![alt text](ntfy_phone.png)
